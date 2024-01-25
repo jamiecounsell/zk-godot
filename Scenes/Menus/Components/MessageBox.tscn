@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://tecfxdnfim68"]
+
+[ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="1_pk26v"]
+
+[sub_resource type="GDScript" id="GDScript_xypeu"]
+script/source = "extends Control
+class_name MessageBox
+
+@export var message : String :
+	set(new_message):
+		$Panel/ScrollContainer/MarginContainer/RichTextLabel.text = new_message
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsm4m"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="SystemFont" id="SystemFont_tb56l"]
+font_names = PackedStringArray("Noto Mono", "Monospace")
+subpixel_positioning = 0
+
+[node name="MessageBox" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_xypeu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsm4m")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_pk26v")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_tb56l")

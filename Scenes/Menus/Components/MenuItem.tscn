@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb8l63x8qj1v4"]
+
+[ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="1_bx4nr"]
+
+[sub_resource type="GDScript" id="GDScript_h6yxq"]
+script/source = "@tool
+class_name MenuItem
+extends MarginContainer
+
+var button : Button = null
+
+@export var text : String :
+	set(new_text):
+		text = new_text
+		if button:
+			button.set_text(text.to_upper())
+
+@export_file('*.ogg', '*.mp3', '*.wav') var hover_sound : String
+
+var runnable = null;
+
+@export_file('*.gd') var action : String :
+	set(new_action):
+		action = new_action
+		var loaded = load(action)
+		runnable = loaded.new() if new_action and loaded else null
+		if button and runnable:
+			button.pressed.connect(_run_action)
+		notify_property_list_changed()
+
+func _set(property, value) -> bool:
+	if runnable and property in runnable.get_action_property_list().map(func(x): return x.name):
+		runnable.set(property, value)
+		return true
+	return false
+
+func _get(property):
+	if _child_should_handle(property):
+		return runnable.get(property)
+
+func _child_should_handle(property):
+	return runnable and property in runnable.get_action_property_list().map(func(x): return x.name)
+
+func _get_property_list() -> Array:
+	var properties = []
+	if runnable:
+		properties = runnable.get_action_property_list()
+	return properties if properties else []
+
+func _ready():
+	button = $Button
+	button.text = text.to_upper()
+	if action and not runnable:
+		runnable = load(action).new()
+	if action:
+		button.pressed.connect(_run_action)
+	if hover_sound:
+		button.mouse_entered.connect(_play_hover_sound)
+		button.focus_entered.connect(_play_hover_sound)
+
+func _run_action():
+	runnable.execute(self)
+
+func _play_hover_sound():
+	AudioService.playOnce('uid://cd6a4b615l4px')
+"
+
+[node name="MenuItem" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+script = SubResource("GDScript_h6yxq")
+hover_sound = "res://Sounds/UI/Click_03.ogg"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_bx4nr")

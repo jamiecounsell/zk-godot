@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://tur7va1473nv"]
+
+[ext_resource type="PackedScene" uid="uid://dt8lyent2x82g" path="res://Scenes/Menus/Components/Menu.tscn" id="1_gglp6"]
+[ext_resource type="PackedScene" uid="uid://cb8l63x8qj1v4" path="res://Scenes/Menus/Components/MenuItem.tscn" id="2_k3pa7"]
+[ext_resource type="PackedScene" uid="uid://tecfxdnfim68" path="res://Scenes/Menus/Components/MessageBox.tscn" id="3_hvkfa"]
+
+[node name="DebugMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_direction = 3
+layout_mode = 2
+offset_left = 393.0
+offset_top = 20.0
+offset_right = 793.0
+offset_bottom = 460.0
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 2
+
+[node name="Menu" parent="ScrollContainer" instance=ExtResource("1_gglp6")]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="MenuItem_Test" parent="ScrollContainer/Menu" instance=ExtResource("2_k3pa7")]
+layout_mode = 2
+text = "Test"
+action = "res://Scripts/Menus/Actions/DisplayMessageAction.gd"
+message_box = NodePath("../../../MessageBox")
+
+[node name="MenuItem_Reboot" parent="ScrollContainer/Menu" instance=ExtResource("2_k3pa7")]
+layout_mode = 2
+text = "Music"
+action = "res://Scripts/Menus/Actions/ExitAction.gd"
+restart_after_exit = true
+
+[node name="MenuItem_Exit" parent="ScrollContainer/Menu" instance=ExtResource("2_k3pa7")]
+layout_mode = 2
+text = "Music"
+action = "res://Scripts/Menus/Actions/ExitAction.gd"
+restart_after_exit = false
+
+[node name="MenuItem_Back" parent="ScrollContainer/Menu" instance=ExtResource("2_k3pa7")]
+layout_mode = 2
+text = "Back"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Menus/MainMenu.tscn"
+sound = "res://Sounds/UI/Execute_01.ogg"
+
+[node name="MessageBox" parent="." instance=ExtResource("3_hvkfa")]
+layout_mode = 1
+offset_left = 433.0
+offset_top = 42.0
+offset_right = 755.0
+offset_bottom = 427.0

@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://beocwemju6jfi"]
+
+[ext_resource type="PackedScene" uid="uid://dt8lyent2x82g" path="res://Scenes/Menus/Components/Menu.tscn" id="1_edp21"]
+[ext_resource type="PackedScene" uid="uid://cb8l63x8qj1v4" path="res://Scenes/Menus/Components/MenuItem.tscn" id="2_5grv6"]
+[ext_resource type="PackedScene" uid="uid://b6akbiwa7qhga" path="res://Scenes/Menus/Components/Logo.tscn" id="3_b7ure"]
+
+[node name="GamesMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_direction = 3
+layout_mode = 2
+offset_left = 393.0
+offset_top = 20.0
+offset_right = 793.0
+offset_bottom = 481.0
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 2
+
+[node name="Menu" parent="ScrollContainer" instance=ExtResource("1_edp21")]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="MenuItem_Classic" parent="ScrollContainer/Menu" instance=ExtResource("2_5grv6")]
+layout_mode = 2
+text = "Classic"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Games/Classic.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
+[node name="MenuItem_Random" parent="ScrollContainer/Menu" instance=ExtResource("2_5grv6")]
+layout_mode = 2
+text = "Random"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Games/Classic.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
+[node name="MenuItem_TimeTrial" parent="ScrollContainer/Menu" instance=ExtResource("2_5grv6")]
+layout_mode = 2
+text = "Time Trial"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Games/Classic.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
+[node name="MenuItem_Roguelike" parent="ScrollContainer/Menu" instance=ExtResource("2_5grv6")]
+layout_mode = 2
+text = "Roguelike"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Games/Classic.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
+[node name="MenuItem_Back" parent="ScrollContainer/Menu" instance=ExtResource("2_5grv6")]
+layout_mode = 2
+text = "Back"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Menus/MainMenu.tscn"
+sound = "res://Sounds/UI/Execute_01.ogg"
+
+[node name="Logo" parent="." instance=ExtResource("3_b7ure")]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 149.0
+offset_right = 737.0
+offset_bottom = 323.0

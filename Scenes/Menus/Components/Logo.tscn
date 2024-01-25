@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6akbiwa7qhga"]
+
+[ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="1_03mye"]
+[ext_resource type="Texture2D" uid="uid://dggrvoaykp4qx" path="res://Sprites/Other/ball.png" id="2_ax6vc"]
+
+[node name="Logo" type="VBoxContainer"]
+offset_left = 452.0
+offset_top = 124.0
+offset_right = 729.0
+offset_bottom = 298.0
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ZERO" type="Label" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_03mye")
+theme_override_font_sizes/font_size = 100
+text = "ZER
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 18
+
+[node name="Ball" type="TextureRect" parent="Container/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_ax6vc")
+expand_mode = 3
+
+[node name="KELVIN" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_03mye")
+theme_override_font_sizes/font_size = 100
+text = "KELVIN"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb8l63x8qj1v4"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/Actions/LoadSceneAction.gd" id="1_7vie1"]
+[ext_resource type="PackedScene" uid="uid://bydfs03h6txkk" path="res://Scenes/Menus/Components/Button.tscn" id="1_ro8cp"]
+
+[sub_resource type="GDScript" id="GDScript_h6yxq"]
+script/source = "class_name MenuItem
+extends MarginContainer
+
+@export var text : String : set = set_text
+@export var action : Resource : set = set_action
+
+var button = null
+
+func _ready():
+	button = $Button
+	set_text(text)
+
+func _get_property_list() -> Array:
+	var properties = []
+	if action:
+		properties = action._get_property_list()
+	return properties
+
+func set_text(new_text):
+	text = new_text
+	if button:
+		button.set_text(text)
+
+func set_action(new_action):
+	action = new_action
+	if button:
+		button.set_action(action)
+"
+
+[node name="MenuItem" type="MarginContainer"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = SubResource("GDScript_h6yxq")
+action = ExtResource("1_7vie1")
+
+[node name="Button" parent="." instance=ExtResource("1_ro8cp")]
+layout_mode = 2

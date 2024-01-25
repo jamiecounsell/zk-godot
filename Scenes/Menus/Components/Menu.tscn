@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt8lyent2x82g"]
+
+[ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="1_bi6f0"]
+
+[sub_resource type="GDScript" id="GDScript_l1v4s"]
+script/source = "extends Container
+
+func _ready():
+	var next_control = self.find_next_valid_focus()
+	
+	# Disable signals to prevent triggers from intiial focus
+	next_control.set_block_signals(true)
+	
+	# Grab focus of the next available control
+	next_control.grab_focus()
+	
+	# Re-enable signals
+	next_control.set_block_signals(false)
+"
+
+[node name="Menu" type="VBoxContainer"]
+offset_right = 400.0
+size_flags_vertical = 3
+theme = ExtResource("1_bi6f0")
+script = SubResource("GDScript_l1v4s")

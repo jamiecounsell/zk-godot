@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://crknb1loia5vk"]
+
+[ext_resource type="PackedScene" uid="uid://dt8lyent2x82g" path="res://Scenes/Menus/Components/Menu.tscn" id="1_3misc"]
+[ext_resource type="PackedScene" uid="uid://cb8l63x8qj1v4" path="res://Scenes/Menus/Components/MenuItem.tscn" id="2_mmqxx"]
+
+[sub_resource type="GDScript" id="GDScript_wuvvd"]
+
+[sub_resource type="Shader" id="Shader_iclb6"]
+code = "shader_type canvas_item;
+
+uniform float scanline_count : hint_range(0, 1800) = 50.0;
+uniform float line_darkness : hint_range(0, 1) = 0.1;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+vec2 uv_curve(vec2 uv)
+{
+	uv = (uv - 0.5) * 2.0;
+	
+	uv.x *= 1.0 + pow(abs(uv.y) / 3.0, 2.0);
+	uv.y *= 1.0 + pow(abs(uv.x) / 3.0, 2.0);
+	
+	uv = (uv/2.0) + 0.5;
+	return uv;
+}
+
+void fragment()
+{	
+	//You can modify the *3.0, *-3.0 for a bigger or smaller 
+	float r = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*0.0), 0.0).r;
+	float g = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*3.0), 0.0).g;
+	float b = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*-3.0), 0.0).b;
+	
+	//If you dont want scanlines you can just delete this part
+	float s = sin(uv_curve(SCREEN_UV).y * scanline_count * PI * 2.0);
+	s = (s * 0.5 + 0.5) * 0.9 + 0.1;
+	vec4 scan_line = vec4(vec3(pow(s, line_darkness)), 1.0);
+	
+	COLOR = vec4(r, g, b, 1.0) * scan_line;
+}"
+script = SubResource("GDScript_wuvvd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2qlo"]
+shader = SubResource("Shader_iclb6")
+shader_parameter/scanline_count = 278.119
+shader_parameter/line_darkness = 0.965
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" parent="." instance=ExtResource("1_3misc")]
+layout_mode = 1
+offset_bottom = -319.0
+
+[node name="MenuItem_Play" parent="Menu" instance=ExtResource("2_mmqxx")]
+layout_mode = 2
+text = "Play"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Menus/GamesMenu.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
+[node name="MenuItem_LogIn" parent="Menu" instance=ExtResource("2_mmqxx")]
+layout_mode = 2
+text = "Log In"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Games/Classic.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
+[node name="MenuItem_Reboot" parent="Menu" instance=ExtResource("2_mmqxx")]
+layout_mode = 2
+text = "Reboot"
+action = "res://Scripts/Menus/Actions/RebootAction.gd"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_q2qlo")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

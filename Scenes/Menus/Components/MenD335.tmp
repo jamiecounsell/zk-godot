@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb8l63x8qj1v4"]
+
+[sub_resource type="GDScript" id="GDScript_h6yxq"]
+script/source = "@tool
+class_name MenuItem
+extends MarginContainer
+
+var button = null
+
+# Text
+@export var text : String :
+	set(new_text):
+		text = new_text
+		if button:
+			button.set_text(text)
+
+var runnable = null;
+# Action
+@export var action : Resource :
+	set(new_action):
+		action = new_action
+		runnable = new_action.new() if new_action else new_action
+		if button and runnable:
+			button.pressed.connect(_run)
+		self.notify_property_list_changed()
+
+func _set(property, value) -> bool:
+	if runnable and property in runnable.get_action_property_list().map(func(x): return x.name):
+		runnable.set(property, value)
+		self.notify_property_list_changed()
+		return true
+	else:
+		return false
+
+func _get(property):
+	if runnable and property in runnable.get_action_property_list().map(func(x): return x.name):
+		return runnable.get(property)
+	else:
+		return null
+
+func _ready():
+	button = $Button
+	button.text = text
+	if action and not runnable:
+		runnable = action.new()
+		button.pressed.connect(_run)
+
+func _run():
+	print('hello')
+	runnable.execute()
+
+func _get_property_list() -> Array:
+	var properties = []
+	if runnable:
+		properties = runnable.get_action_property_list()
+	return properties if properties else []
+"
+
+[node name="MenuItem" type="MarginContainer"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = SubResource("GDScript_h6yxq")
+scene_path = ""
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2

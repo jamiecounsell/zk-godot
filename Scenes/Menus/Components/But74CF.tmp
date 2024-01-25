@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bydfs03h6txkk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f881p"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.313726, 0.941176, 0.870588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_tyl0k"]
+/colors/blue = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_f881p")
+
+[sub_resource type="GDScript" id="GDScript_jpfru"]
+script/source = "extends Button
+
+@export var action : Script
+
+func _pressed():
+	if action and action.has_method(\"execute\"):
+		action.execute()
+	elif action:
+		push_error(\"action must define execute()\")
+	else:
+		push_error(\"action is not defined\")
+"
+
+[node name="Button" type="Button"]
+offset_right = 129.0
+offset_bottom = 74.0
+theme = SubResource("Theme_tyl0k")
+script = SubResource("GDScript_jpfru")
