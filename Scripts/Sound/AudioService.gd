@@ -13,5 +13,5 @@ func playOnce(sound: String):
 func play(sound : String):
 	music.stream = load(sound)
 	self.add_child(music)
-	# music.play()
+	music.play()
 	return music

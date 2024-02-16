@@ -7,8 +7,14 @@ const default_scene = 'res://Scenes/Menus/MainMenu.tscn'
 
 func _ready():
 	scene_changed.connect(change_scene)
-	AudioService.play('uid://chdp0gnknt01b')
-
+	
+	var timer = Timer.new()
+	timer.wait_time = 10
+	timer.one_shot = true
+	timer.timeout.connect(func(): AudioService.play('uid://chdp0gnknt01b'))
+	add_child(timer)
+	timer.start()
+	
 func _process(_delta):
 	if not current_scene:
 		change_scene(default_scene)

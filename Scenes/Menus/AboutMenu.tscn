@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bejn2t2l24g4m"]
+
+[ext_resource type="PackedScene" uid="uid://dt8lyent2x82g" path="res://Scenes/Menus/Components/Menu.tscn" id="1_t2egx"]
+[ext_resource type="PackedScene" uid="uid://cb8l63x8qj1v4" path="res://Scenes/Menus/Components/MenuItem.tscn" id="2_hw3l8"]
+[ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="2_tk46n"]
+[ext_resource type="PackedScene" uid="uid://tecfxdnfim68" path="res://Scenes/Menus/Components/MessageBox.tscn" id="3_3u4fl"]
+
+[node name="AboutMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MessageBox" parent="MarginContainer" instance=ExtResource("3_3u4fl")]
+layout_mode = 2
+theme = ExtResource("2_tk46n")
+message = "Amidst the vast, uncharted expanse of the cosmos, you are a lone astronaut on a daring quest to discover the edge of the universe. Your journey leads you deep into ancient alien oceans and beneath ice-clad planets, down glistening crystal chasms, and through endless fields of frozen debris. With the fabric of space as your frontier, your mission is clear: to delve into the unknown, where every leap could be your last. Play alone or with friends, and venture farther than mankind has ever been. [b]Whatever you do, don’t lose your cool[/b]."
+
+[node name="Menu" parent="." instance=ExtResource("1_t2egx")]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -329.0
+offset_top = -90.0
+offset_right = 81.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="MenuItem_Back" parent="Menu" instance=ExtResource("2_hw3l8")]
+layout_mode = 2
+text = "Back"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Menus/MainMenu.tscn"
+sound = "res://Sounds/UI/Execute_01.ogg"

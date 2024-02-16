@@ -34,6 +34,13 @@ size_flags_vertical = 1
 layout_mode = 2
 text = "Music"
 
+[node name="MenuItem_About" parent="ScrollContainer/Menu" instance=ExtResource("2_ffv5q")]
+layout_mode = 2
+text = "About"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Menus/AboutMenu.tscn"
+sound = "res://Sounds/UI/Confirm_06.ogg"
+
 [node name="MenuItem_Back" parent="ScrollContainer/Menu" instance=ExtResource("2_ffv5q")]
 layout_mode = 2
 text = "Back"

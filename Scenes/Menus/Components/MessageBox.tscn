@@ -6,9 +6,16 @@
 script/source = "extends Control
 class_name MessageBox
 
+const label_path = \"Panel/ScrollContainer/MarginContainer/RichTextLabel\"
+var label
+
 @export var message : String :
 	set(new_message):
-		$Panel/ScrollContainer/MarginContainer/RichTextLabel.text = new_message
+		get_node(label_path).text = new_message
+
+func _ready():
+	label = get_node(label_path)
+	label.bbcode_enabled = true
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsm4m"]
@@ -69,5 +76,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_pk26v")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_tb56l")
+theme_override_font_sizes/normal_font_size = 24
