@@ -40,7 +40,7 @@ message_box = NodePath("../../../MessageBox")
 layout_mode = 2
 text = "Music"
 action = "res://Scripts/Menus/Actions/ExitAction.gd"
-restart_after_exit = true
+restart_after_exit = false
 
 [node name="MenuItem_Exit" parent="ScrollContainer/Menu" instance=ExtResource("2_k3pa7")]
 layout_mode = 2
@@ -53,7 +53,7 @@ layout_mode = 2
 text = "Back"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
 scene_path = "res://Scenes/Menus/MainMenu.tscn"
-sound = "res://Sounds/UI/Execute_01.ogg"
+sound = ""
 
 [node name="MessageBox" parent="." instance=ExtResource("3_hvkfa")]
 layout_mode = 1

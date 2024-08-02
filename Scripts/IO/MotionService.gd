@@ -4,7 +4,7 @@ extends Node
 var client = PacketPeerUDP.new()
 const host = "127.0.0.1"
 const port = 12345
-const UPDATES_PER_SEC = 0
+const UPDATES_PER_SEC = 60
 var timer =  Timer.new()
 var seq = 0
 
@@ -29,6 +29,10 @@ func _ready():
 	add_child(timer)
 	timer.start()
 
+func _exit_tree():
+	if client:
+		client.close()
+
 func _physics_process(delta):
 	# Left Motor
 	if Input.is_action_pressed("left_stick_up"):
@@ -44,7 +48,15 @@ func _physics_process(delta):
 		down(Motor.RIGHT)
 	else:
 		stop(Motor.RIGHT)
-	
+
+func _process(delta):
+	# Check if there is an available packet
+	if client.get_available_packet_count() > 0:
+		var packet = client.get_packet()
+		if packet:
+			var received_message = packet.get_string_from_utf8()
+			print("Received message:", received_message)
+
 func set_motor(direction: int, speed: float):
 	motors[direction] = speed * SPEED
 

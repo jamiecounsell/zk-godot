@@ -53,4 +53,4 @@ layout_mode = 2
 text = "Back"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
 scene_path = "res://Scenes/Menus/MainMenu.tscn"
-sound = "res://Sounds/UI/Execute_01.ogg"
+sound = ""

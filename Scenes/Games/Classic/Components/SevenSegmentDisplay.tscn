@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://urhypxy1gmf8"]
+
+[sub_resource type="GDScript" id="GDScript_pic71"]
+script/source = "extends Control
+
+enum Align {
+	LEFT,
+	CENTER,
+	RIGHT
+}
+
+var segment_length = 25.25
+var segment_thickness = 5.5
+var segment_offset = 30
+var gap = 0.5
+var digit_width = (segment_length + segment_offset) * 0.8
+
+@export var value : int = 0
+@export var alignment: Align = Align.RIGHT
+
+# Segment visibility for each digit 0-9
+var segments_for_digit = {
+	0: ['A', 'B', 'C', 'D', 'E', 'F'],
+	1: ['B', 'C'],
+	2: ['A', 'B', 'G', 'E', 'D'],
+	3: ['A', 'B', 'C', 'D', 'G'],
+	4: ['F', 'G', 'B', 'C'],
+	5: ['A', 'F', 'G', 'C', 'D'],
+	6: ['A', 'F', 'E', 'D', 'C', 'G'],
+	7: ['A', 'B', 'C'],
+	8: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+	9: ['A', 'B', 'C', 'D', 'F', 'G']
+}
+
+var active_segments := []
+
+func _ready():
+	update_display()
+
+func set_value(new_value):
+	value = new_value
+	update_display()
+
+func update_display():
+	var str_value = str(value)
+	active_segments.clear()
+
+	var total_width = str_value.length() * digit_width
+	var start_x = 0
+
+	match alignment:
+		Align.LEFT:
+			start_x = 0
+		Align.CENTER:
+			start_x = -total_width / 2 + digit_width / 2
+		Align.RIGHT:
+			start_x = -total_width + digit_width
+
+	for i in range(str_value.length()):
+		var digit = int(str_value[i])
+		var digit_center = Vector2(start_x + i * digit_width, get_custom_minimum_size().y/2)
+		for segment in segments_for_digit[digit]:
+			active_segments.append({\"segment\": segment, \"center\": digit_center})
+	queue_redraw()
+
+func _draw():
+	for entry in active_segments:
+		draw_segment(entry[\"segment\"], entry[\"center\"])
+
+func draw_segment(segment, center):
+	match segment:
+		\"A\":
+			draw_segment_line(center, Vector2(-segment_length / 2 + gap, -segment_offset), Vector2(segment_length / 2 - gap, -segment_offset))
+		\"B\":
+			draw_segment_line(center, Vector2(segment_length / 2, -segment_offset + gap), Vector2(segment_length / 2, 0 - gap))
+		\"C\":
+			draw_segment_line(center, Vector2(segment_length / 2, 0 + gap), Vector2(segment_length / 2, segment_offset - gap))
+		\"D\":
+			draw_segment_line(center, Vector2(-segment_length / 2 + gap, segment_offset), Vector2(segment_length / 2 - gap, segment_offset))
+		\"E\":
+			draw_segment_line(center, Vector2(-segment_length / 2, 0 + gap), Vector2(-segment_length / 2, segment_offset - gap))
+		\"F\":
+			draw_segment_line(center, Vector2(-segment_length / 2, -segment_offset + gap), Vector2(-segment_length / 2, 0 - gap))
+		\"G\":
+			draw_segment_line(center, Vector2(-segment_length / 2 + gap, 0), Vector2(segment_length / 2 - gap, 0))
+
+func draw_segment_line(center, offsetx, offsety):
+	draw_line(center + offsetx, center + offsety, Color.WHITE, segment_thickness)
+"
+
+[node name="SevenSegmentDisplay" type="Control"]
+custom_minimum_size = Vector2(50, 75)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_pic71")

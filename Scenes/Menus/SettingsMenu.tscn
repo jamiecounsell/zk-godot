@@ -38,15 +38,15 @@ text = "Music"
 layout_mode = 2
 text = "About"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
-scene_path = "res://Scenes/Menus/AboutMenu.tscn"
-sound = "res://Sounds/UI/Confirm_06.ogg"
+scene_path = ""
+sound = ""
 
 [node name="MenuItem_Back" parent="ScrollContainer/Menu" instance=ExtResource("2_ffv5q")]
 layout_mode = 2
 text = "Back"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
-scene_path = "res://Scenes/Menus/MainMenu.tscn"
-sound = "res://Sounds/UI/Execute_01.ogg"
+scene_path = ""
+sound = ""
 
 [node name="Logo" parent="." instance=ExtResource("3_fv3sl")]
 layout_mode = 0

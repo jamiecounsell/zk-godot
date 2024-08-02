@@ -11,7 +11,7 @@ func _ready():
 	var timer = Timer.new()
 	timer.wait_time = 10
 	timer.one_shot = true
-	timer.timeout.connect(func(): AudioService.play('uid://chdp0gnknt01b'))
+	#timer.timeout.connect(func(): AudioService.play('uid://chdp0gnknt01b'))
 	add_child(timer)
 	timer.start()
 	

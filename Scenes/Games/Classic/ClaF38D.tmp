@@ -1,0 +1,902 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8whexat1jogw"]
+
+[ext_resource type="Script" path="res://Scripts/Game/GameMode.gd" id="1_bpafk"]
+[ext_resource type="Texture2D" uid="uid://0rduemvol18y" path="res://Sprites/Resources/icb-overlay.png" id="2_7mcuv"]
+[ext_resource type="Script" path="res://Scenes/Games/Classic/ClassicGame.gd" id="2_ch631"]
+[ext_resource type="PackedScene" uid="uid://b2rktyrymapo4" path="res://Scenes/Games/Classic/Components/ScoreRow.tscn" id="3_norvx"]
+[ext_resource type="Texture2D" uid="uid://cus6bhtt1ij6t" path="res://Sprites/Resources/icb.jpg" id="4_avisj"]
+[ext_resource type="Script" path="res://Scripts/Menus/TargetOverlay/Hole.gd" id="5_vlc1a"]
+[ext_resource type="PackedScene" uid="uid://dt8lyent2x82g" path="res://Scenes/Menus/Components/Menu.tscn" id="6_mgkiv"]
+[ext_resource type="PackedScene" uid="uid://cb8l63x8qj1v4" path="res://Scenes/Menus/Components/MenuItem.tscn" id="7_o7dhn"]
+
+[node name="Classic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bpafk")
+game = ExtResource("2_ch631")
+
+[node name="Background" type="CenterContainer" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 2
+texture = ExtResource("2_7mcuv")
+
+[node name="GameArea" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 119.0
+offset_right = 624.0
+offset_bottom = 480.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Scores" type="VBoxContainer" parent="GameArea"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="BallOnBar" parent="GameArea/Scores" instance=ExtResource("3_norvx")]
+layout_mode = 2
+label = "Ball on Bar"
+
+[node name="Bonus" parent="GameArea/Scores" instance=ExtResource("3_norvx")]
+layout_mode = 2
+label = "Bonus"
+
+[node name="Score" parent="GameArea/Scores" instance=ExtResource("3_norvx")]
+layout_mode = 2
+label = "Score"
+
+[node name="TargetOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Board" type="Sprite2D" parent="TargetOverlay"]
+position = Vector2(401, 276)
+scale = Vector2(0.721167, 0.770583)
+texture = ExtResource("4_avisj")
+
+[node name="Hole1" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 401.0
+offset_top = 426.0
+offset_right = 401.0
+offset_bottom = 426.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole2" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 535.0
+offset_top = 411.0
+offset_right = 535.0
+offset_bottom = 411.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole3" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 266.0
+offset_top = 370.0
+offset_right = 266.0
+offset_bottom = 370.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole4" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 468.0
+offset_top = 330.0
+offset_right = 468.0
+offset_bottom = 330.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole5" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 346.0
+offset_top = 263.0
+offset_right = 346.0
+offset_bottom = 263.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole6" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 525.0
+offset_top = 196.0
+offset_right = 525.0
+offset_bottom = 196.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole7" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 410.0
+offset_top = 162.0
+offset_right = 410.0
+offset_bottom = 162.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole8" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 287.0
+offset_top = 127.0
+offset_right = 287.0
+offset_bottom = 127.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole9" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 474.0
+offset_top = 77.0
+offset_right = 474.0
+offset_bottom = 77.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole10" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 362.0
+offset_top = 47.0
+offset_right = 362.0
+offset_bottom = 47.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole11" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 552.0
+offset_top = 462.0
+offset_right = 552.0
+offset_bottom = 462.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole12" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 580.0
+offset_top = 411.0
+offset_right = 580.0
+offset_bottom = 411.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole13" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 595.0
+offset_top = 381.0
+offset_right = 595.0
+offset_bottom = 381.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole14" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 550.0
+offset_top = 376.0
+offset_right = 550.0
+offset_bottom = 376.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole15" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 595.0
+offset_top = 340.0
+offset_right = 595.0
+offset_bottom = 340.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole16" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 455.0
+offset_top = 414.0
+offset_right = 455.0
+offset_bottom = 414.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole17" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 500.0
+offset_top = 388.0
+offset_right = 500.0
+offset_bottom = 388.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole18" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 461.0
+offset_top = 373.0
+offset_right = 461.0
+offset_bottom = 373.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole19" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 400.0
+offset_top = 389.0
+offset_right = 400.0
+offset_bottom = 389.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole20" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 351.0
+offset_top = 404.0
+offset_right = 351.0
+offset_bottom = 404.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole21" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 310.0
+offset_top = 276.0
+offset_right = 310.0
+offset_bottom = 276.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole22" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 278.0
+offset_top = 248.0
+offset_right = 278.0
+offset_bottom = 248.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole23" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 420.0
+offset_right = 249.0
+offset_bottom = 420.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole24" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 222.0
+offset_top = 383.0
+offset_right = 222.0
+offset_bottom = 383.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole25" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 208.0
+offset_top = 342.0
+offset_right = 208.0
+offset_bottom = 342.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole26" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 298.0
+offset_top = 347.0
+offset_right = 298.0
+offset_bottom = 347.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole27" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 271.0
+offset_top = 307.0
+offset_right = 271.0
+offset_bottom = 307.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole28" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 404.0
+offset_top = 337.0
+offset_right = 404.0
+offset_bottom = 337.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole29" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 363.0
+offset_top = 322.0
+offset_right = 363.0
+offset_bottom = 322.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole30" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 243.0
+offset_top = 264.0
+offset_right = 243.0
+offset_bottom = 264.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole31" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 227.0
+offset_top = 234.0
+offset_right = 227.0
+offset_bottom = 234.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole32" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 208.0
+offset_top = 203.0
+offset_right = 208.0
+offset_bottom = 203.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole33" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 233.0
+offset_right = 315.0
+offset_bottom = 233.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole34" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 304.0
+offset_top = 406.0
+offset_right = 304.0
+offset_bottom = 406.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole35" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 335.0
+offset_top = 301.0
+offset_right = 335.0
+offset_bottom = 301.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole36" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 386.0
+offset_top = 298.0
+offset_right = 386.0
+offset_bottom = 298.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole37" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 506.0
+offset_top = 330.0
+offset_right = 506.0
+offset_bottom = 330.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole38" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 477.0
+offset_top = 285.0
+offset_right = 477.0
+offset_bottom = 285.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole39" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 443.0
+offset_top = 281.0
+offset_right = 443.0
+offset_bottom = 281.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole40" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 420.0
+offset_top = 263.0
+offset_right = 420.0
+offset_bottom = 263.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole41" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 552.0
+offset_top = 282.0
+offset_right = 552.0
+offset_bottom = 282.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole42" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 525.0
+offset_top = 246.0
+offset_right = 525.0
+offset_bottom = 246.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole43" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 498.0
+offset_top = 222.0
+offset_right = 498.0
+offset_bottom = 222.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole44" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 579.0
+offset_top = 198.0
+offset_right = 579.0
+offset_bottom = 198.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole45" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 570.0
+offset_top = 226.0
+offset_right = 570.0
+offset_bottom = 226.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole46" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 594.0
+offset_top = 168.0
+offset_right = 594.0
+offset_bottom = 168.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole47" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 552.0
+offset_top = 170.0
+offset_right = 552.0
+offset_bottom = 170.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole48" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 525.0
+offset_top = 143.0
+offset_right = 525.0
+offset_bottom = 143.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole49" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 471.0
+offset_top = 196.0
+offset_right = 471.0
+offset_bottom = 196.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole50" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 437.0
+offset_top = 189.0
+offset_right = 437.0
+offset_bottom = 189.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole51" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 409.0
+offset_top = 215.0
+offset_right = 409.0
+offset_bottom = 215.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole52" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 382.0
+offset_top = 189.0
+offset_right = 382.0
+offset_bottom = 189.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole53" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 356.0
+offset_top = 164.0
+offset_right = 356.0
+offset_bottom = 164.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole54" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 346.0
+offset_top = 209.0
+offset_right = 346.0
+offset_bottom = 209.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole55" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 471.0
+offset_top = 163.0
+offset_right = 471.0
+offset_bottom = 163.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole56" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 437.0
+offset_top = 136.0
+offset_right = 437.0
+offset_bottom = 136.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole57" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 410.0
+offset_top = 112.0
+offset_right = 410.0
+offset_bottom = 112.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole58" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 383.0
+offset_top = 137.0
+offset_right = 383.0
+offset_bottom = 137.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole59" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 330.0
+offset_top = 127.0
+offset_right = 330.0
+offset_bottom = 127.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole60" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 318.0
+offset_top = 158.0
+offset_right = 318.0
+offset_bottom = 158.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole61" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 287.0
+offset_top = 170.0
+offset_right = 287.0
+offset_bottom = 170.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole62" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 255.0
+offset_top = 158.0
+offset_right = 255.0
+offset_bottom = 158.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole63" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 243.0
+offset_top = 127.0
+offset_right = 243.0
+offset_bottom = 127.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole64" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 214.0
+offset_top = 140.0
+offset_right = 214.0
+offset_bottom = 140.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole65" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 97.0
+offset_right = 256.0
+offset_bottom = 97.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole66" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 288.0
+offset_top = 88.0
+offset_right = 288.0
+offset_bottom = 88.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole67" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 265.0
+offset_top = 59.0
+offset_right = 265.0
+offset_bottom = 59.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole68" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 474.0
+offset_top = 120.0
+offset_right = 474.0
+offset_bottom = 120.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole69" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 498.0
+offset_top = 99.0
+offset_right = 498.0
+offset_bottom = 99.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole70" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 520.0
+offset_top = 78.0
+offset_right = 520.0
+offset_bottom = 78.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole71" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 578.0
+offset_top = 70.0
+offset_right = 578.0
+offset_bottom = 70.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole72" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 497.0
+offset_top = 56.0
+offset_right = 497.0
+offset_bottom = 56.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole73" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 474.0
+offset_top = 36.0
+offset_right = 474.0
+offset_bottom = 36.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole74" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 450.0
+offset_top = 56.0
+offset_right = 450.0
+offset_bottom = 56.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole75" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 429.0
+offset_top = 78.0
+offset_right = 429.0
+offset_bottom = 78.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole76" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 363.0
+offset_top = 92.0
+offset_right = 363.0
+offset_bottom = 92.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole77" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 386.0
+offset_top = 69.0
+offset_right = 386.0
+offset_bottom = 69.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole78" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 409.0
+offset_top = 48.0
+offset_right = 409.0
+offset_bottom = 48.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole79" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 340.0
+offset_top = 70.0
+offset_right = 340.0
+offset_bottom = 70.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole80" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 317.0
+offset_top = 49.0
+offset_right = 317.0
+offset_bottom = 49.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole81" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 339.0
+offset_top = 28.0
+offset_right = 339.0
+offset_bottom = 28.0
+script = ExtResource("5_vlc1a")
+
+[node name="Hole82" type="Control" parent="TargetOverlay"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 386.0
+offset_top = 27.0
+offset_right = 386.0
+offset_bottom = 27.0
+script = ExtResource("5_vlc1a")
+
+[node name="ModeLabel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClassicLeft" type="MarginContainer" parent="ModeLabel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 86.0
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="ModeLabel/ClassicLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_font_sizes/font_size = 64
+text = "C
+L
+A
+S
+S
+I
+C"
+
+[node name="ClassicRight" type="MarginContainer" parent="ModeLabel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 718.0
+offset_right = 804.0
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="ModeLabel/ClassicRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_font_sizes/font_size = 64
+text = "C
+L
+A
+S
+S
+I
+C"
+
+[node name="Menu" parent="." instance=ExtResource("6_mgkiv")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -157.0
+offset_right = 150.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuItemResume" parent="Menu" instance=ExtResource("7_o7dhn")]
+layout_mode = 2
+text = "Resume"
+action = "res://Scripts/Menus/Actions/ToggleVisibilityAction.gd"
+target_path = NodePath("..")
+
+[node name="MenuItemDebug" parent="Menu" instance=ExtResource("7_o7dhn")]
+layout_mode = 2
+text = "Toggle Debugger"
+action = "res://Scripts/Menus/Actions/ToggleVisibilityAction.gd"
+target_path = NodePath("../../TargetOverlay")
+
+[node name="MenuItemBack" parent="Menu" instance=ExtResource("7_o7dhn")]
+layout_mode = 2
+text = "Back to Title"
+action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
+scene_path = "res://Scenes/Menus/MainMenu.tscn"
+sound = ""

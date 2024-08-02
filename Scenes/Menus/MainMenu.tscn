@@ -27,21 +27,21 @@ layout_mode = 2
 text = "Play"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
 scene_path = "res://Scenes/Menus/GamesMenu.tscn"
-sound = "res://Sounds/UI/Confirm_06.ogg"
+sound = ""
 
 [node name="MenuItem_Settings" parent="Menu" instance=ExtResource("2_mmqxx")]
 layout_mode = 2
 text = "Settings"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
 scene_path = "res://Scenes/Menus/SettingsMenu.tscn"
-sound = "res://Sounds/UI/Confirm_06.ogg"
+sound = ""
 
 [node name="MenuItem_Debug" parent="Menu" instance=ExtResource("2_mmqxx")]
 layout_mode = 2
 text = "Debug"
 action = "res://Scripts/Menus/Actions/LoadSceneAction.gd"
 scene_path = "res://Scenes/Menus/DebugMenu.tscn"
-sound = "res://Sounds/UI/Sequence_02.ogg"
+sound = ""
 
 [node name="MenuItem_Exit" parent="Menu" instance=ExtResource("2_mmqxx")]
 layout_mode = 2

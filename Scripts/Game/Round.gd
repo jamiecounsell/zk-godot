@@ -2,14 +2,14 @@ extends Node
 class_name Round
 
 @export var round_number = 0
-var players : Array[Player]
+var players : Array[GamePlayer]
 
 signal ended
 
-func _init(players: Array[Player]):
+func _init(players: Array[GamePlayer]):
 	players = players
 
-func game_over():
+func round_over():
 	return false
 
 func run():

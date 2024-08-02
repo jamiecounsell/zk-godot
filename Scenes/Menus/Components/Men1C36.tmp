@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt8lyent2x82g"]
+
+[ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="1_bi6f0"]
+
+[sub_resource type="GDScript" id="GDScript_l1v4s"]
+script/source = "class_name Menu
+extends Container
+
+func _ready():
+	pass
+	#switch_control()
+	#visibility_changed.connect(switch_control)
+
+var switching = false
+
+func switch_control():
+	if switching: return
+	switching = true
+	var next_control = self.find_next_valid_focus()
+	if next_control:
+		next_control.grab_focus()
+	switching = false
+"
+
+[node name="Menu" type="VBoxContainer"]
+offset_right = 400.0
+size_flags_vertical = 3
+theme = ExtResource("1_bi6f0")
+script = SubResource("GDScript_l1v4s")

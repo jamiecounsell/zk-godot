@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2rktyrymapo4"]
+
+[ext_resource type="PackedScene" uid="uid://urhypxy1gmf8" path="res://Scenes/Games/Classic/Components/SevenSegmentDisplay.tscn" id="1_u5uwn"]
+
+[sub_resource type="GDScript" id="GDScript_mqy60"]
+script/source = "@tool
+extends Control
+
+var score_display
+var score_label
+
+@export var score : int :
+	set(new_score):
+		score = new_score
+		if score_display:
+			score_display.score = new_score
+
+@export var label : String :
+	set(new_label):
+		label = new_label
+		if score_label:
+			score_label.text = new_label
+
+func _ready():
+	score_display = get_node(\"ScoreRowContainer/Score\")
+	score_display.value = score
+	score_label = get_node(\"ScoreRowContainer/LabelContainer/Label\")
+	score_label.text = label
+"
+
+[node name="ScoreRow" type="MarginContainer"]
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = SubResource("GDScript_mqy60")
+
+[node name="ScoreRowContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Score" parent="ScoreRowContainer" instance=ExtResource("1_u5uwn")]
+layout_mode = 2
+
+[node name="LabelContainer" type="MarginContainer" parent="ScoreRowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="ScoreRowContainer/LabelContainer"]
+layout_mode = 2
+text = "Ball on Bar"

@@ -3,19 +3,19 @@
 [ext_resource type="Theme" uid="uid://byupk1hbk2rvd" path="res://Themes/Retro.tres" id="1_bi6f0"]
 
 [sub_resource type="GDScript" id="GDScript_l1v4s"]
-script/source = "extends Container
+script/source = "class_name Menu
+extends Container
 
 func _ready():
-	var next_control = self.find_next_valid_focus()
-	
-	# Disable signals to prevent triggers from intiial focus
-	next_control.set_block_signals(true)
-	
-	# Grab focus of the next available control
-	next_control.grab_focus()
-	
-	# Re-enable signals
-	next_control.set_block_signals(false)
+	if visible:
+		switch_control()
+	visibility_changed.connect(func(): call_deferred(\"switch_control\"))
+
+func switch_control():
+	var next_control = self.find_next_valid_focus() if self.visible else null
+	if next_control:
+		next_control.grab_focus()
+
 "
 
 [node name="Menu" type="VBoxContainer"]

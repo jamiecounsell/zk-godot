@@ -4,7 +4,7 @@ extends "res://Scripts/Menus/Actions/Action.gd"
 @export var sound:String
 
 func execute(_node):
-	AudioService.playOnce(sound)
+	if sound: AudioService.playOnce(sound)
 	GameService.change_scene(scene_path)
 
 static func get_action_property_list() -> Array:
